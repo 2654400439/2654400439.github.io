@@ -9,11 +9,12 @@ Run `python -m http.server 8000` in this directory, then visit http://localhost:
 ## Update content
 
 - `index.html`: page structure and default English content.
-- `app.js`: selected publications, Chinese translations, profile details, and citation interactions.
+- `app.js`: Chinese translations, language switching, and citation interactions.
+- `publications.js`: selected publications, author lists, paper links, and BibTeX.
 - `styles.css`: layout, responsive styles, reduced-motion and print support.
 - `assets/`: favicon and future paper figures.
 
-To replace a conceptual paper illustration, place a figure in `assets/` and add an `image: 'assets/your-figure.webp'` property to its object in `papers` in `app.js`. Images use `object-fit: contain` to preserve the full scientific figure. Current graphics are original conceptual diagrams, not experimental results.
+To add a paper figure, place it in `assets/` and add an `image: 'assets/your-figure.webp'` property to its object in `papers` in `publications.js`. Images use `object-fit: contain` to preserve the full scientific figure. The default layout is a compact academic publication list, with an identity sidebar, biography, recent news, education, honors, and service. No decorative hero or placeholder portrait is used.
 
 ## Deployment
 
