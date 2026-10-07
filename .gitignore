@@ -1,0 +1,5 @@
+.private-source/
+.tools/
+node_modules/
+qa/
+*.log

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5f0">
+  <meta name="description" content="Yifei Cheng — research on encrypted traffic analysis, website fingerprinting, and network security.">
+  <meta property="og:title" content="Yifei Cheng · Security Research">
+  <meta property="og:description" content="Understanding what encryption leaves visible. Selected research in encrypted traffic analysis and network security.">
+  <meta property="og:type" content="website">
+  <title>Yifei Cheng · Security Research</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="header wrap">
+  <a class="identity" href="#" aria-label="Yifei Cheng, home"><span class="monogram">yc<span>↗</span></span><span>YIFEI CHENG<span class="identity-sub" data-i18n="identitySub">SECURITY RESEARCH</span></span></a>
+  <nav aria-label="Main navigation"><a href="#research" data-i18n="navResearch">Research</a><a href="#about" data-i18n="navAbout">About</a><a href="#contact" data-i18n="navContact">Contact</a><button id="language" aria-label="切换为中文">中文 <span>↗</span></button></nav>
+</header>
+<main id="main">
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <div class="hero-top"><span class="eyebrow"><span class="live-dot"></span><span data-i18n="role">RESEARCH IN NETWORK SECURITY</span></span><span class="index-note">BEIJING, CHINA / 01</span></div>
+    <div class="hero-layout">
+      <div class="hero-copy"><p class="intro" data-i18n="hello">Hello, I’m Yifei Cheng.</p><h1 id="hero-title" data-i18n="headline">Understanding what<br><em>encryption</em><br>leaves visible.</h1><p class="hero-description" data-i18n="heroDescription">I study encrypted traffic and the security of the systems behind it — connecting protocol behavior, machine learning, and real-world measurement.</p><a class="text-link hero-link" href="#research"><span data-i18n="explore">Explore selected research</span><span class="arrow">↘</span></a></div>
+      <figure class="hero-figure"><svg id="signal-art" viewBox="0 0 480 460" role="img" aria-labelledby="signal-title signal-desc"><title id="signal-title">Signals beneath encryption</title><desc id="signal-desc">An abstract field of traffic traces passes through a protocol boundary, revealing an underlying pattern. A conceptual illustration, not experimental data.</desc><defs><pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".8" fill="#c3c7c3"/></pattern><linearGradient id="trace-gradient"><stop stop-color="#7a9193" stop-opacity=".15"/><stop offset=".5" stop-color="#28585e"/><stop offset="1" stop-color="#28585e" stop-opacity=".35"/></linearGradient></defs><rect x="0" y="0" width="480" height="420" fill="url(#grid)"/><g id="trace-lines"></g><rect x="226" y="38" width="76" height="344" rx="38" fill="#f6f5f0" fill-opacity=".6" stroke="#b6bdb5"/><path d="M264 38V382" stroke="#8a9994" stroke-dasharray="3 6"/><g fill="#ad583e"><circle cx="264" cy="148" r="5"/><circle cx="264" cy="230" r="5"/><circle cx="264" cy="296" r="5"/></g><path d="M34 426H444" stroke="#bfc5bf"/><path d="M34 422V430M444 422V430" stroke="#bfc5bf"/><text x="34" y="451">ENCRYPTED SIGNAL</text><text x="335" y="451">LATENT STRUCTURE</text></svg><figcaption><span class="figure-label">FIG. 01</span><span data-i18n="figureCaption">Hidden content. Observable patterns.</span><span class="figure-plus">+</span></figcaption></figure>
+    </div>
+    <div class="affiliation"><span data-i18n="institute">Institute of Information Engineering, Chinese Academy of Sciences</span><span data-i18n="university">University of Chinese Academy of Sciences</span><a href="https://github.com/2654400439" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+  </section>
+  <section id="research" class="research wrap section-space" aria-labelledby="research-title">
+    <div class="section-heading"><div><span class="eyebrow" data-i18n="researchLabel">01 / SELECTED WORK</span><h2 id="research-title" data-i18n="researchTitle">Research in focus<span class="accent">.</span></h2></div><p data-i18n="researchDescription">A closer look at the information exposed<br>by encrypted communications.</p></div>
+    <div id="featured-papers"></div>
+    <div class="additional-heading"><h3 data-i18n="additionalTitle">Further selected publications</h3><span data-i18n="selectedNote">A curated selection</span></div><div id="additional-papers"></div>
+  </section>
+  <section id="about" class="about section-space"><div class="wrap about-grid"><div><span class="eyebrow" data-i18n="aboutLabel">02 / BACKGROUND</span><h2 data-i18n="aboutTitle">A curiosity for<br>what lies beneath<span class="accent">.</span></h2><div class="about-text"><p data-i18n="bio">My research explores the gap between encrypted content and observable behavior. I work on website fingerprinting, encrypted traffic analysis, and network protocol security at the Institute of Information Engineering, Chinese Academy of Sciences.</p><p data-i18n="approach">Through measurement and learning-based methods, I aim to better understand information leakage in modern networked systems.</p></div><div class="topics"><span data-i18n="topic1">Encrypted traffic</span><span data-i18n="topic2">Website fingerprinting</span><span data-i18n="topic3">Protocol security</span></div></div><div class="background-details"><h3 data-i18n="honors">Selected honors</h3><div class="honor"><span class="year">2026</span><div><h4 data-i18n="award1">National Scholarship for Doctoral Students</h4><p data-i18n="award1org">Ministry of Education, China</p></div><span class="small-star">✳</span></div><div class="honor"><span class="year">2024</span><div><h4 data-i18n="award2">1st Place · DataCon</h4><p data-i18n="award2org">Network Infrastructure Security Track</p></div><span class="small-star">✳</span></div><div class="honor"><span class="year">2026</span><div><h4 data-i18n="award3">Outstanding Student Model</h4><p data-i18n="award3org">University of Chinese Academy of Sciences</p></div></div><div class="service"><h3 data-i18n="service">Academic service</h3><div><span data-i18n="reviewer">Reviewer</span><span>The Web Conference (WWW) 2025</span></div><div><span data-i18n="teaching">Teaching Assistant</span><span data-i18n="course">Network Information Content Security<br>UCAS · 2023–2025</span></div></div></div></div></section>
+  <section id="contact" class="contact wrap section-space"><span class="eyebrow" data-i18n="contactLabel">03 / GET IN TOUCH</span><div class="contact-row"><h2 data-i18n="contactTitle">Let’s exchange<br><em>ideas.</em></h2><div><p data-i18n="contactDescription">For research discussions, academic collaboration,<br>or questions about my work.</p><a class="email-link" href="mailto:chengyifei@iie.ac.cn">chengyifei@iie.ac.cn <span>↗</span></a><a class="text-link github-contact" href="https://github.com/2654400439" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a></div></div></section>
+</main>
+<footer class="wrap footer"><span>© 2026 Yifei Cheng</span><span data-i18n="footerNote">Built around a simple question: what can we observe?</span><a href="#" data-i18n="backTop">Back to top ↑</a></footer>
+<dialog id="citation-dialog" aria-labelledby="citation-title"><div class="dialog-heading"><h2 id="citation-title">BibTeX</h2><button id="close-citation" aria-label="Close citation">×</button></div><pre id="citation-text" tabindex="0"></pre><button class="copy-button" id="copy-citation">Copy citation</button><p id="copy-status" role="status"></p></dialog>
+</body>
+</html>
