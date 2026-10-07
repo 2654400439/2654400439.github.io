@@ -4,5 +4,44 @@
 @media(max-width:1000px){.wrap{padding-left:25px;padding-right:25px}.page{grid-template-columns:195px minmax(0,1fr);gap:30px}.nav-links{gap:17px}.section-contact{display:none}.home-link span{display:none}.profile-links{font-size:11px}.affiliation{font-size:12px}.education-row,.service-row{grid-template-columns:115px 1fr;gap:12px}}
 @media(max-width:720px){html{scroll-padding-top:105px}.wrap{padding-left:22px;padding-right:22px}.nav{height:auto;min-height:89px;display:block;padding-top:12px;padding-bottom:9px}.home-link{font-size:14px}.home-link span{display:inline;font-size:12px}.nav-links{justify-content:space-between;gap:10px;font-size:11px;margin-top:7px}.nav-links>a{padding:4px 0}#language{font-size:10px;padding:2px 7px}.page{display:block;padding-top:25px}.profile{position:static;display:grid;grid-template-columns:1fr 1fr;gap:0 18px;border-bottom:1px solid var(--line);padding:0 0 23px;margin-bottom:25px}.profile-heading{grid-column:1;grid-row:1/3}.profile-kicker{font-size:8px;letter-spacing:.8px}h1{font-size:29px;margin-top:9px}.name-cn{font-size:20px;margin-top:5px}.position{font-size:13px;margin-top:12px}.affiliation{grid-column:2;grid-row:1;font-size:11px;padding-top:3px}.affiliation>span{font-size:10px;line-height:1.7}.profile-links{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px 20px;border:0;padding:0;margin-top:13px;font-size:11px}.location{display:none}.profile-interests,.profile-note{display:none}h2{font-size:21px}section{margin-bottom:28px}.about p{font-size:13px;line-height:1.9}.announcement{font-size:12px!important;padding:10px 12px!important}.news h2{font-size:19px}.news-list{font-size:12px}.news-list li{grid-template-columns:57px 1fr;gap:7px;margin:8px 0}.news-list time{font-size:11px}.section-note{font-size:11px}.paper h3{font-size:14px}.authors{font-size:11px}.paper-conference{font-size:11px}.paper-links{gap:17px;font-size:12px;margin-top:7px}.paper-links a,.paper-links button{padding:4px 0}.paper-top{gap:8px}.venue{font-size:10px}.paper-rank,.status{font-size:10px}.compact-paper{grid-template-columns:76px 1fr;gap:10px}.compact-venue{font-size:10px}.compact-paper h4{font-size:12px}.education-row{grid-template-columns:95px 1fr;gap:10px}.education-row h3{font-size:13px}.education-row p{font-size:11px}.date{font-size:11px}.honor-list li{grid-template-columns:65px 1fr;gap:10px;font-size:12px}.service-row{grid-template-columns:100px 1fr;gap:10px}.service-row h3,.service-row p{font-size:12px}footer{font-size:9px;gap:10px}.paper-image{float:none;width:100%;max-height:190px;margin:0 0 12px}}
 @media(max-width:380px){.wrap{padding-left:17px;padding-right:17px}.nav-links{gap:7px;font-size:10px}.profile{gap:0 12px}h1{font-size:27px}.profile-links{gap:8px 15px}.profile-links>a{gap:6px}.education-row{grid-template-columns:84px 1fr}.service-row{grid-template-columns:88px 1fr}}
+/* Profile refinements: readable type, a personal photograph, and clearer news. */
+.portrait-link{display:block;width:190px;margin:0 0 23px;border-radius:8px;overflow:hidden;box-shadow:0 0 0 1px #dce3e9}
+.portrait{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+.portrait-link:hover{box-shadow:0 0 0 2px var(--blue)}
+.person-link{color:var(--blue);text-decoration:underline;text-decoration-color:#abc1d6;text-underline-offset:3px}
+.person-link:hover{text-decoration-color:var(--blue)}
+.about p{font-size:15px;line-height:1.85}.announcement{font-size:14px!important}
+h2,html[lang=zh-CN] h2{font-size:25px}.nav-links{font-size:14px}
+.affiliation{font-size:14px}.affiliation>span,.profile-links,.profile-interests ul,.profile-note{font-size:13px}
+.profile-interests h2,html[lang=zh-CN] .profile-interests h2{font-size:14px}
+.news{padding:19px 22px 17px;background:#f4f8fc;border:1px solid #dce7f1;border-radius:6px}
+.news h2,html[lang=zh-CN] .news h2{font-size:24px;color:#245a87;border-bottom-color:#d4e2ee;margin-bottom:13px}
+.news-list{font-size:15px}.news-list li{grid-template-columns:77px 1fr;gap:12px;margin:12px 0;line-height:1.75}
+.news-list time{font-size:13px;color:#2a648e;font-weight:600}.news-list strong{color:#285a80}
+.news-list li:nth-child(2) strong{color:#8c4c29}
+.section-note,.section-contact{font-size:13px}.paper h3{font-size:16px}.authors,.paper-conference,.paper-links{font-size:13px}
+.venue,.status,.paper-rank{font-size:12px}.venue{background:#e7f0f7;color:#1d527f}
+.paper{padding-bottom:23px;margin-bottom:22px}.subheading{font-size:17px}
+.compact-paper{margin-bottom:21px}.compact-paper h4{font-size:14px}.compact-paper p,.compact-venue{font-size:12px}
+.education-row h3{font-size:15px}.education-row p,.date{font-size:13px}.honor-list li,.service-row h3,.service-row p{font-size:14px}
+.service-row .muted{font-size:13px}section{margin-bottom:35px}
+@media(min-width:721px) and (max-height:1100px){.profile{position:static}}
+@media(max-width:1000px) and (min-width:721px){.portrait-link{width:180px}.profile-links{font-size:12px}.nav-links{gap:14px;font-size:13px}}
+@media(max-width:720px){
+ .profile{grid-template-columns:112px minmax(0,1fr);gap:0 20px}
+ .portrait-link{grid-column:1;grid-row:1/3;width:112px;margin:0;align-self:start}
+ .profile-heading{grid-column:2;grid-row:1}.profile-kicker{font-size:9px}
+ h1{font-size:27px;margin:6px 0}.name-cn{font-size:20px;margin-top:4px}.position{font-size:14px;margin:8px 0}
+ .affiliation{grid-column:1/-1;grid-row:3;margin-top:14px;font-size:13px;line-height:1.7}.affiliation>span{font-size:12px;margin-top:2px}
+ .profile-links{grid-row:4;font-size:12px;gap:10px 20px;margin-top:12px}
+ .nav-links{font-size:11px}.about p{font-size:14px}.announcement{font-size:13px!important}
+ h2,html[lang=zh-CN] h2{font-size:23px}.news{padding:15px 14px 10px}
+ .news h2,html[lang=zh-CN] .news h2{font-size:22px}.news-list{font-size:14px}.news-list li{grid-template-columns:62px 1fr;gap:8px;margin:12px 0}.news-list time{font-size:12px}
+ .section-note{font-size:12px}.paper h3{font-size:15px}.authors,.paper-conference,.paper-links{font-size:12px}
+ .venue,.status,.paper-rank{font-size:11px}.compact-paper h4{font-size:14px}.compact-venue,.compact-paper p{font-size:11px}
+ .education-row h3{font-size:14px}.education-row p,.date{font-size:12px}.honor-list li,.service-row h3,.service-row p{font-size:13px}.service-row .muted{font-size:12px}
+}
+@media(max-width:380px){.profile{grid-template-columns:100px minmax(0,1fr);gap:0 15px}.portrait-link{width:100px}h1{font-size:25px}.nav-links{font-size:10px}.profile-links{font-size:11px}}
+@media print{.portrait-link{width:110px;float:right;margin:0 0 15px 20px}.news{background:none}.profile{display:block}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
 @media print{.header,.profile-interests,.profile-note,.paper-links,dialog,.skip,footer{display:none!important}.page{display:block;padding:0}.profile{position:static;border-bottom:1px solid #ccc;margin-bottom:20px;padding-bottom:15px}.profile-heading h1{font-size:25px}.name-cn{display:inline;font-size:20px;margin-left:15px}.profile-links{display:block;border:0;padding:0;margin:8px 0}.profile-links>a{display:inline-flex;margin-right:20px}.profile-kicker{display:none}section,.paper{break-inside:avoid}.wrap{max-width:none}.paper{margin-bottom:12px;padding-bottom:12px}}
