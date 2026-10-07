@@ -43,5 +43,9 @@ h2,html[lang=zh-CN] h2{font-size:25px}.nav-links{font-size:14px}
 }
 @media(max-width:380px){.profile{grid-template-columns:100px minmax(0,1fr);gap:0 15px}.portrait-link{width:100px}h1{font-size:25px}.nav-links{font-size:10px}.profile-links{font-size:11px}}
 @media print{.portrait-link{width:110px;float:right;margin:0 0 15px 20px}.news{background:none}.profile{display:block}}
+.review-list{margin:0;padding-left:18px;font-size:14px}.review-list li+li{margin-top:5px}
+main>section:focus{outline:none}.nav-tail{pointer-events:none}
+@media(max-width:720px){.nav-links{gap:7px;font-size:10px}.review-list{font-size:13px}}
+@media print{.nav-tail{display:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
 @media print{.header,.profile-interests,.profile-note,.paper-links,dialog,.skip,footer{display:none!important}.page{display:block;padding:0}.profile{position:static;border-bottom:1px solid #ccc;margin-bottom:20px;padding-bottom:15px}.profile-heading h1{font-size:25px}.name-cn{display:inline;font-size:20px;margin-left:15px}.profile-links{display:block;border:0;padding:0;margin:8px 0}.profile-links>a{display:inline-flex;margin-right:20px}.profile-kicker{display:none}section,.paper{break-inside:avoid}.wrap{max-width:none}.paper{margin-bottom:12px;padding-bottom:12px}}
