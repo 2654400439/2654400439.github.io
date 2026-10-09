@@ -3,12 +3,37 @@ Object.assign(translations, {"bio":"我是<strong>中国科学院信息工程研
 for (const key of Object.keys(translations)) {
   translations[key] = translations[key].replaceAll('中国科学院大学', '<a href="https://www.ucas.ac.cn/" target="_blank" rel="noopener noreferrer">中国科学院大学</a>');
 }
+Object.assign(translations, {"paperNote":"姓名底纹标记第一作者；其余论文以加粗下划线标出本人。作者位次均在条目中注明。","allPapers":"完整论文列表","allPapersNote":"已发表或正式接收 · 含上方代表作","expandPapers":"展开全部","collapsePapers":"收起列表"});
 const conferences={silent:'Network and Distributed System Security Symposium (NDSS), 2027',star:'IEEE International Conference on Computer Communications (INFOCOM), 2026',holmes:'The ACM Web Conference (WWW), 2025'};
 let language='en';try{language=localStorage.getItem('language')==='zh'?'zh':'en'}catch{}
 const originalText=new Map();document.querySelectorAll('[data-i18n]').forEach(el=>originalText.set(el,el.innerHTML));
+function escapePublicationText(value){return String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;')}
+function authorPosition(p){return p.authors.indexOf('Yifei Cheng')+1}
+function positionLabel(position,zh){const chinese=['','一','二','三','四','五','六','七','八','九'];if(zh)return `第${chinese[position]||position}作者`;const suffix=position===1?'st':position===2?'nd':position===3?'rd':'th';return `${position}${suffix} author`}
+function publicationAuthors(p){const first=authorPosition(p)===1;return p.authors.map(name=>name==='Yifei Cheng'?`<strong class="self-author${first?' first-author':''}">${name}</strong>`:escapePublicationText(name)).join(', ')}
+function publicationMarkup(p,featured){
+ const zh=language==='zh',idx=zh?1:0,position=authorPosition(p),heading=featured?'h3':'h4';
+ const links=p.links.map(l=>`<a href="${l[2]}" target="_blank" rel="noopener noreferrer">${l[idx]}</a>`).join('');
+ return `<article class="${featured?'paper featured-paper':'publication-entry'}" id="${featured?'paper':'publication'}-${p.id}" data-position="${position}">
+ ${featured?`<a class="paper-figure" href="${p.image}" target="_blank" rel="noopener noreferrer" aria-label="${zh?'查看完整论文配图：':'View full paper figure: '}${escapePublicationText(p.title)}"><img src="${p.image}" width="840" height="600" alt="${escapePublicationText(p.title)} — ${zh?'研究示意图':'research overview'}" loading="lazy" decoding="async"></a>`:''}
+ <div class="publication-copy"><div class="paper-top"><span class="venue">${escapePublicationText(p.venue)}</span><span class="paper-rank">${p.rank} · ${positionLabel(position,zh)}</span>${p.accepted?`<span class="status">${zh?'已录用':'Accepted'}</span>`:''}${p.oral?`<span class="status">${zh?'口头报告':'Oral'}</span>`:''}</div>
+ <${heading}>${p.links.length?`<a href="${p.links[0][2]}" target="_blank" rel="noopener noreferrer">${escapePublicationText(p.title)}</a>`:escapePublicationText(p.title)}</${heading}>
+ <p class="authors">${publicationAuthors(p)}</p>
+ ${featured?`<p class="paper-conference">${conferences[p.id]}</p>`:''}
+ ${(links||p.bib||p.coverage)?`<div class="paper-links">${links}${p.bib?`<button data-cite="${p.id}" aria-haspopup="dialog">BibTeX</button>`:''}${p.coverage?`<a class="coverage-link" href="${p.coverage}" target="_blank" rel="noopener noreferrer">${zh?'公众号解读':'WeChat feature'} ↗</a>`:''}</div>`:''}
+ </div></article>`;
+}
+function renderPublications(){
+ document.getElementById('featured-papers').innerHTML=papers.map(p=>publicationMarkup(p,true)).join('');
+ const years=[...new Set(publications.map(p=>p.year))].sort((a,b)=>b-a);
+ document.getElementById('all-publications').innerHTML=years.map(year=>`<section class="publication-year" aria-labelledby="year-${year}"><h3 id="year-${year}">${year}</h3>${publications.filter(p=>p.year===year).map(p=>publicationMarkup(p,false)).join('')}</section>`).join('');
+ document.querySelectorAll('.publication-count').forEach(el=>el.textContent=publications.length);
+ document.querySelectorAll('[data-cite]').forEach(btn=>btn.addEventListener('click',()=>{document.getElementById('citation-text').textContent=publications.find(p=>p.id===btn.dataset.cite).bib;document.getElementById('copy-status').textContent='';document.getElementById('citation-dialog').showModal()}));
+}
+
 function render(){const zh=language==='zh',idx=zh?1:0;document.documentElement.lang=zh?'zh-CN':'en';document.title=zh?'程逸飞 | 个人学术主页':'Yifei Cheng (程逸飞) | Academic Homepage';originalText.forEach((value,el)=>el.innerHTML=zh?(translations[el.dataset.i18n]||value):value);const toggle=document.getElementById('language');toggle.textContent=zh?'EN':'中文';toggle.setAttribute('aria-label',zh?'Switch to English':'切换为中文');document.querySelector('nav').setAttribute('aria-label',zh?'主导航':'Main navigation');document.querySelector('.skip').textContent=zh?'跳至正文':'Skip to content';document.getElementById('close-citation').setAttribute('aria-label',zh?'关闭引用':'Close citation');document.getElementById('copy-citation').textContent=zh?'复制引用':'Copy citation';
-document.getElementById('featured-papers').innerHTML=papers.map((p,i)=>`<article class="paper" id="paper-${p.id}">${p.image?`<img class="paper-image" src="${p.image}" alt="${p.name} overview" loading="lazy">`:''}<div class="paper-top"><span class="venue">${p.venue}</span><span class="paper-rank">CCF-A · ${zh?'第一作者':'First author'}</span>${p.status?`<span class="status">${p.status[idx]}</span>`:''}</div><h3>${p.links.length?`<a href="${p.links[0][2]}" target="_blank" rel="noopener noreferrer">${p.name}: ${p.subtitle}</a>`:`${p.name}: ${p.subtitle}`}</h3><p class="authors">${p.authors}</p><p class="paper-conference">${conferences[p.id]}</p><div class="paper-links">${p.links.map(l=>`<a href="${l[2]}" target="_blank" rel="noopener noreferrer">${l[idx]}</a>`).join('')}${p.bib?`<button data-cite="${i}" aria-haspopup="dialog">BibTeX</button>`:`<span class="availability">${zh?'已录用，待出版':'Accepted, to appear'}</span>`}</div></article>`).join('');
-document.getElementById('additional-papers').innerHTML=additional.map(p=>`<article class="compact-paper"><span class="compact-venue">${p[2]}</span><div><h4>${p[1]}</h4><p>${zh?`第${['','一','二','三','四'][p[3]]}作者`:`${{1:'First',2:'Second',4:'Fourth'}[p[3]]} author`}${p[4]?(zh?' · 已录用':' · Accepted'):''}</p></div></article>`).join('');document.querySelectorAll('[data-cite]').forEach(btn=>btn.addEventListener('click',()=>{document.getElementById('citation-text').textContent=papers[Number(btn.dataset.cite)].bib;document.getElementById('copy-status').textContent='';document.getElementById('citation-dialog').showModal()}));}
+renderPublications();
+}
 document.getElementById('language').addEventListener('click',()=>{language=language==='en'?'zh':'en';try{localStorage.setItem('language',language)}catch{}render()});
 document.getElementById('close-citation').addEventListener('click',()=>document.getElementById('citation-dialog').close());document.getElementById('citation-dialog').addEventListener('click',e=>{if(e.target===e.currentTarget){const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.target.close()}});
 document.getElementById('copy-citation').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(document.getElementById('citation-text').textContent);document.getElementById('copy-status').textContent=language==='zh'?'已复制到剪贴板。':'Copied to clipboard.'}catch{document.getElementById('copy-status').textContent=language==='zh'?'请选中上方文本，手动复制。':'Please select and copy the citation above.'}});
@@ -36,3 +61,7 @@ new ResizeObserver(scheduleNavigation).observe(document.getElementById('main'));
 addEventListener('load',()=>{updateNavigation();if(navLinks.some(a=>a.hash===location.hash))goToSection(location.hash)});
 document.getElementById('language').addEventListener('click',scheduleNavigation);
 updateNavigation();
+
+const publicationDetails=document.getElementById('publication-details');
+publicationDetails.addEventListener('toggle',scheduleNavigation);
+document.getElementById('collapse-publications').addEventListener('click',()=>{publicationDetails.open=false;const summary=publicationDetails.querySelector('summary');summary.focus({preventScroll:true});updateNavigation();summary.scrollIntoView({block:'start',behavior:'instant'})});
