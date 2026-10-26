@@ -77,3 +77,13 @@ main>section:focus{outline:none}.nav-tail{pointer-events:none}
 @media print{.nav-tail{display:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
 @media print{.header,.profile-interests,.profile-note,.paper-links,dialog,.skip,footer{display:none!important}.page{display:block;padding:0}.profile{position:static;border-bottom:1px solid #ccc;margin-bottom:20px;padding-bottom:15px}.profile-heading h1{font-size:25px}.name-cn{display:inline;font-size:20px;margin-left:15px}.profile-links{display:block;border:0;padding:0;margin:8px 0}.profile-links>a{display:inline-flex;margin-right:20px}.profile-kicker{display:none}section,.paper{break-inside:avoid}.wrap{max-width:none}.paper{margin-bottom:12px;padding-bottom:12px}}
+/* Expandable evidence for a publication's research impact. */
+.impact-chevron{display:inline-block;transition:transform .2s}
+.impact-toggle[aria-expanded=true] .impact-chevron{transform:rotate(180deg)}
+.research-impact{margin-top:12px;padding:13px 15px;border-left:2px solid #b8ccdf;background:var(--soft);border-radius:0 4px 4px 0;font-size:12px;line-height:1.8;overflow-wrap:anywhere}
+.research-impact[hidden]{display:none}
+.research-impact .impact-title{color:var(--ink);font-weight:600}
+.research-impact p+p{margin-top:5px}
+.impact-sources{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:8px}
+.impact-sources a{text-decoration:underline;text-decoration-color:#abc1d6;text-underline-offset:3px}
+@media(max-width:720px){.impact-sources a{padding:4px 0}}

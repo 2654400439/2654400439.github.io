@@ -173,6 +173,14 @@ const publications = [
   },
   {
     "id": "holmes",
+    "impact": {
+      "title": ["TUM bachelor’s thesis · 2026", "TUM 本科毕业论文 · 2026"],
+      "description": ["Findings from this work on how network conditions affect website fingerprinting motivated a bachelor’s thesis topic at TUM’s Chair of Connected Mobility. The thesis, “Analyzing the Effects of Network Conditions on Website Fingerprinting,” is listed among the group’s completed bachelor’s theses for 2026.", "本文关于网络条件影响网站指纹攻击效果的发现，被慕尼黑工业大学 Chair of Connected Mobility 用于引出一项本科毕业论文课题的研究动机。同名论文《Analyzing the Effects of Network Conditions on Website Fingerprinting》已列入该组 2026 年完成的本科论文名单。"],
+      "links": [
+        ["Topic description", "题目说明", "assets/thesis-topic-website-fingerprinting-network-conditions.pdf"],
+        ["TUM completion record", "TUM 完成记录", "https://www.ce.cit.tum.de/en/cm/thesis-guided-research/finished-theses/"]
+      ]
+    },
     "title": "HOLMES & WATSON: A Robust and Lightweight HTTPS Website Fingerprinting through HTTP Version Parallelism",
     "authors": [
       "Yifei Cheng",

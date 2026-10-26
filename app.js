@@ -13,6 +13,9 @@ function positionLabel(position,zh){const chinese=['','一','二','三','四','�
 function publicationAuthors(p){const first=authorPosition(p)===1;return p.authors.map(name=>name==='Yifei Cheng'?`<strong class="self-author${first?' first-author':''}">${name}</strong>`:escapePublicationText(name)).join(', ')}
 function publicationMarkup(p,featured){
  const zh=language==='zh',idx=zh?1:0,position=authorPosition(p),heading=featured?'h3':'h4';
+ const impactId=`impact-${featured?'paper':'publication'}-${p.id}`;
+ const impactButton=p.impact?`<button class="impact-toggle" aria-expanded="false" aria-controls="${impactId}" title="${zh?'查看本文与 TUM 毕业论文课题的关联':'Explore this work’s connection to a TUM thesis topic'}">${zh?'研究影响':'Research Impact'} <span class="impact-chevron" aria-hidden="true">▾</span></button>`:'';
+ const impactPanel=p.impact?`<div class="research-impact" id="${impactId}" hidden><p class="impact-title">${escapePublicationText(p.impact.title[idx])}</p><p>${escapePublicationText(p.impact.description[idx])}</p><div class="impact-sources">${p.impact.links.map(l=>`<a href="${l[2]}" target="_blank" rel="noopener noreferrer">${l[idx]} ↗</a>`).join('')}</div></div>`:'';
  const links=p.links.map(l=>`<a href="${l[2]}" target="_blank" rel="noopener noreferrer">${l[idx]}</a>`).join('');
  return `<article class="${featured?'paper featured-paper':'publication-entry'}" id="${featured?'paper':'publication'}-${p.id}" data-position="${position}">
  ${featured?`<a class="paper-figure" href="${p.image}" target="_blank" rel="noopener noreferrer" aria-label="${zh?'查看完整论文配图：':'View full paper figure: '}${escapePublicationText(p.title)}"><img src="${p.image}" width="840" height="600" alt="${escapePublicationText(p.title)} — ${zh?'研究示意图':'research overview'}" loading="lazy" decoding="async"></a>`:''}
@@ -20,14 +23,21 @@ function publicationMarkup(p,featured){
  <${heading}>${p.links.length?`<a href="${p.links[0][2]}" target="_blank" rel="noopener noreferrer">${escapePublicationText(p.title)}</a>`:escapePublicationText(p.title)}</${heading}>
  <p class="authors">${publicationAuthors(p)}</p>
  ${featured?`<p class="paper-conference">${conferences[p.id]}</p>`:''}
- ${(links||p.bib||p.coverage)?`<div class="paper-links">${links}${p.bib?`<button data-cite="${p.id}" aria-haspopup="dialog">BibTeX</button>`:''}${p.coverage?`<a class="coverage-link" href="${p.coverage}" target="_blank" rel="noopener noreferrer">${zh?'公众号解读':'WeChat feature'} ↗</a>`:''}</div>`:''}
+ ${(links||p.bib||p.coverage||p.impact)?`<div class="paper-links">${links}${p.bib?`<button data-cite="${p.id}" aria-haspopup="dialog">BibTeX</button>`:''}${p.coverage?`<a class="coverage-link" href="${p.coverage}" target="_blank" rel="noopener noreferrer">${zh?'公众号解读':'WeChat feature'} ↗</a>`:''}${impactButton}</div>`:''}${impactPanel}
  </div></article>`;
 }
 function renderPublications(){
+ const expandedImpacts=new Set([...document.querySelectorAll('.impact-toggle[aria-expanded="true"]')].map(btn=>btn.getAttribute('aria-controls')));
  document.getElementById('featured-papers').innerHTML=papers.map(p=>publicationMarkup(p,true)).join('');
  const years=[...new Set(publications.map(p=>p.year))].sort((a,b)=>b-a);
  document.getElementById('all-publications').innerHTML=years.map(year=>`<section class="publication-year" aria-labelledby="year-${year}"><h3 id="year-${year}">${year}</h3>${publications.filter(p=>p.year===year).map(p=>publicationMarkup(p,false)).join('')}</section>`).join('');
  document.querySelectorAll('.publication-count').forEach(el=>el.textContent=publications.length);
+ document.querySelectorAll('.impact-toggle').forEach(btn=>{
+  const id=btn.getAttribute('aria-controls'),panel=document.getElementById(id);
+  const setExpanded=expanded=>{btn.setAttribute('aria-expanded',String(expanded));panel.hidden=!expanded};
+  setExpanded(expandedImpacts.has(id));
+  btn.addEventListener('click',()=>setExpanded(btn.getAttribute('aria-expanded')!=='true'));
+ });
  document.querySelectorAll('[data-cite]').forEach(btn=>btn.addEventListener('click',()=>{document.getElementById('citation-text').textContent=publications.find(p=>p.id===btn.dataset.cite).bib;document.getElementById('copy-status').textContent='';document.getElementById('citation-dialog').showModal()}));
 }
 
